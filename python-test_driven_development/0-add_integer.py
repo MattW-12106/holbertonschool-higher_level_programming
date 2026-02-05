@@ -1,7 +1,11 @@
 #!/usr/bin/python3
+"""Adds two integers.
+
+Prototype: def add_integer(a, b=98)
+"""
 def add_integer(a, b=98):
-    """
-    Adds two integers.
+    """Adds two integers.
+
     >>> add_integer = __import__('0-add_integer').add_integer
     >>> add_integer("a", 1)
     Traceback (most recent call last):
