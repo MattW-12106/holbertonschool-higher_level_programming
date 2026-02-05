@@ -1,8 +1,10 @@
+#!/usr/bin/python3
 """
 The function parameters are as follows:
 
 Prototype: def add_integer(a, b=98):
-a and b must be integers or floats, otherwise raise a TypeError exception with the message a must be an integer or b must be an integer
+a and b must be integers or floats, otherwise raise a TypeError exception
+with the message a must be an integer or b must be an integer
 a and b must be first casted to integers if they are float
 Returns an integer: the addition of a and b
 You are not allowed to import any module
@@ -10,26 +12,20 @@ You are not allowed to import any module
 This function returns the value of 2 integers added together
 """
 
+
 def add_integer(a, b=98):
     """
-    This prototype adds functionality for adding two integers together using add_integer.
-    Theres a TypeError exception that chekcs if the variables are integers, if not it shows an error:
-    
+    Adds two integers.
+
     >>> add_integer = __import__('0-add_integer').add_integer
     >>> add_integer("a", 1)
     Traceback (most recent call last):
     TypeError: a must be an integer
-    
-    Checks if you're trying to add two incompatible elements (TypeError)
-
     """
 
-    if not isinstance(a, (int, float)): # checks if ineger is an integer using isinstance
+    if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
-    return int(a) + int(b)
 
-    if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    return int(a) + int(b)
