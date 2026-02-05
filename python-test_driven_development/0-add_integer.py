@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-python3 -c 'print(__import__("0-add_integer").add_integer.__doc__)' | wc -l
+This module defines a function that adds two integers.
 """
 def add_integer(a, b=98):
     if not isinstance(a, (int, float)):
