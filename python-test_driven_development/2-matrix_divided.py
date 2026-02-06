@@ -19,20 +19,30 @@ def matrix_divided(matrix, div):
     Traceback (most recent call last):
     TypeError: matrix must be a matrix (list of lists) of integers/floats
     >>> matrix_divided(matrix, float('inf'))
+    [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+    >>> matrix_divided(matrix, )
     Traceback (most recent call last):
-    TypeError: div must be a number
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+    >>> matrix_divided( )
+    Traceback (most recent call last):
+    TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
     """
-    if not isinstance(div, (int, float)):
-        raise TypeError("div must be a number")
-    if div == 0:
-        raise ZeroDivisionError("division by zero")
     if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
         raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+
+    for row in matrix:
+        if not all(isinstance(x, (int, float)) for x in row):
+            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+
     row_length = len(matrix[0])
+
     if any(len(row) != row_length for row in matrix):
         raise TypeError("Each row of the matrix must have the same size")
-    return [[round(element / div, 2) for element in row] for row in matrix]
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    if not isinstance(div, (int, float)):
+        raise TypeError("div must be a number")
+
+    if div == 0:
+        raise ZeroDivisionError("division by zero")
+
+    return [[round(element / div, 2) for element in row] for row in matrix]
