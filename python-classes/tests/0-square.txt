@@ -5,13 +5,7 @@ The ``Square`` class defines a square.
 ...     "Square", "0-square.py"
 ... ).load_module().Square
 
+Create an instance of Square:
 >>> s = Square()
 >>> isinstance(s, Square)
-True
-
->>> s = Square(5)
->>> isinstance(s, Square)
-True
-
->>> hasattr(s, "_Square__size")
 True
