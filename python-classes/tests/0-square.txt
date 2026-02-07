@@ -1,0 +1,6 @@
+The ``Square`` class defines a square.
+
+>>> import importlib.machinery
+>>> Square = importlib.machinery.SourceFileLoader(
+...     "Square", "0-square.py"
+... ).load_module().Square
