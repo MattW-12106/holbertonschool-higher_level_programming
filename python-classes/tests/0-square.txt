@@ -1,0 +1,17 @@
+The ``Square`` class defines a square.
+
+>>> import importlib.machinery
+>>> Square = importlib.machinery.SourceFileLoader(
+...     "Square", "0-square.py"
+... ).load_module().Square
+
+>>> s = Square()
+>>> isinstance(s, Square)
+True
+
+>>> s = Square(5)
+>>> isinstance(s, Square)
+True
+
+>>> hasattr(s, "_Square__size")
+True
