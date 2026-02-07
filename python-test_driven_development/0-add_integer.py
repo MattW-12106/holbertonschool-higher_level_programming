@@ -1,13 +1,31 @@
 #!/usr/bin/python3
-"""Adds two integers.
-
-Prototype: def add_integer(a, b=98)
-"""
+"""Adds two integers."""
 def add_integer(a, b=98):
-    """Adds two integers.
+    """
+    >>> add_integer(1, 2)
+    3
 
-    >>> add_integer = __import__('0-add_integer').add_integer
+    >>> add_integer(1)
+    99
+
+    >>> add_integer(1.9, 2.1)
+    3
+
+    >>> add_integer(-3, 5)
+    2
+
+    >>> add_integer(3.7, 4.2)
+    7
+
     >>> add_integer("a", 1)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> add_integer(1, "b")
+    Traceback (most recent call last):
+    TypeError: b must be an integer
+
+    >>> add_integer(None, 2)
     Traceback (most recent call last):
     TypeError: a must be an integer
     """
@@ -16,7 +34,3 @@ def add_integer(a, b=98):
     if not isinstance(b, (int, float)):
         raise TypeError("b must be an integer")
     return int(a) + int(b)
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
