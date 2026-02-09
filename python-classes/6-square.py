@@ -3,6 +3,7 @@ class Square:
     """Defines a square."""
 
     def __init__(self, size=0, position=(0, 0)):
+        """Initializes a square with the given size and position."""
         self.size = size
         self.position = position
 
@@ -13,6 +14,7 @@ class Square:
 
     @size.setter
     def size(self, value):
+        """Set the size of the square."""
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
@@ -26,6 +28,7 @@ class Square:
 
     @position.setter
     def position(self, value):
+        """Set the position of the square."""
         if (
             not isinstance(value, tuple) or
             len(value) != 2 or
