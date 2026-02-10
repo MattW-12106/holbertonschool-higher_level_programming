@@ -3,13 +3,17 @@
 
 class Rectangle:
     """A class representing a rectangle."""
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """ Initialize a Rectangle instance.
-            width (int): The width of the rectangle (default is 0).
-            height (int): The height of the rectangle (default is 0).
+            width: The width of the rectangle (default is 0).
+            height: The height of the rectangle (default is 0).
+            number_of_instances: The number of Rectangle instances (default is 0).
         """
         self.width = width
         self.height = height
+        Rectangle.number_of_instances += 1
     
     @property
     def width(self):        
@@ -65,13 +69,11 @@ class Rectangle:
     
     def __del__(self):
         """Print a message when an instance of Rectangle is deleted."""
+        Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
     
-    def number_of_instances():
+    @classmethod
+    def number_of_instances(cls):
         """Return the number of Rectangle instances."""
-        number_of_instances = 0
-        for obj in globals().values():
-            if isinstance(obj, Rectangle):
-                number_of_instances += 1
-        return Rectangle.number_of_instances
+        return cls.number_of_instances
     
