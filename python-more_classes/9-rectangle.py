@@ -73,6 +73,7 @@ class Rectangle:
         print("Bye rectangle...")
         Rectangle.number_of_instances -= 1
     
+    @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         """Return the rectangle with the greater area.
            rect_1 = The first rectangle to compare.
@@ -88,6 +89,7 @@ class Rectangle:
         else:
             return rect_2
     
+    @classmethod
     def square(cls, size=0):
         """Return a new Rectangle instance with width and height equal to size.
            size = The size of the square (default is 0).
