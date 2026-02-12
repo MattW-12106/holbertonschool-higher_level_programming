@@ -1,5 +1,4 @@
-    >>> import importlib.machinery
-    >>> my_list = importlib.machinery.SourceFileLoader("my_list", "1-my_list.py").load_module().my_list
+    >>> from 1_my_list import MyList
     >>> my_list = MyList([3, 1, 2])
     >>> my_list.print_sorted()
     [1, 2, 3]
