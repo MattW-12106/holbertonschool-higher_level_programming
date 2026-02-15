@@ -1,0 +1,1 @@
+abstract and interfaces
