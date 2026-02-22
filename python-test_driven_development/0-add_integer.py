@@ -33,7 +33,7 @@ def add_integer(a, b=98):
     Traceback (most recent call last):
     TypeError: b must be an integer
 
-    >>> add_integer(add, float('inf'))
+    >>> add_integer(add_integer, float('inf'))
     Traceback (most recent call last):
     TypeError: a must be an integer
     """

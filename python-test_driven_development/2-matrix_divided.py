@@ -13,7 +13,7 @@ def matrix_divided(matrix, div):
     >>> matrix_divided(matrix, 'nan')
     Traceback (most recent call last):
     TypeError: div must be a number
-       >>> matrix_divided(matrix, 0)
+    >>> matrix_divided(matrix, 0)
     Traceback (most recent call last):
     ZeroDivisionError: division by zero
     >>> matrix_divided(matrix, )
