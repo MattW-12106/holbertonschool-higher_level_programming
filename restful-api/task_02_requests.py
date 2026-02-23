@@ -37,5 +37,5 @@ def fetch_and_save_posts(filename):
     
     # calls required functions
     if __name__ == "__main__":
-        fetch_and_print_posts()
+        fetch_and_print_posts(filename)
         fetch_and_save_posts("posts.csv")
