@@ -19,12 +19,8 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
 
         # If the path is '/data', return a JSON response with some data
         elif self.path == '/data':
-            data = {
-                "name": "John Doe",
-                "age": 30,
-                "city": "New York"
-            }
-            message = json.dumps(data).encode("utf-8")
+            data = {"name": "John Doe", "age": 30, "city": "New York"}
+            message = json.dumps(data, separators=(',', ':')).encode("utf-8")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.send_header('Content-Length', str(len(message)))
