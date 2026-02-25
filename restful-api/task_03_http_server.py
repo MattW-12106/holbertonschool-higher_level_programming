@@ -8,6 +8,7 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         """Handle GET requests"""
 
+        # If the path is '/', return a welcome message
         if self.path == '/':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
@@ -26,14 +27,12 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             }
             self.wfile.write(json.dumps(data).encode())
         
+        # If the path is '/status', return a plain text response with "OK"
         elif self.path == "/status":
             self.send_response(200)
-            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            status = {
-                "status": "OK"
-            }
-            self.wfile.write(json.dumps(status).encode())
+            self.wfile.write(b"OK")
         
         # If the path is not there, return a 404 Not Found response
         else:
@@ -42,9 +41,10 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b'Not Found')
 
+# Function to run the HTTP server
 def run(server_class=HTTPServer, handler_class=SimpleAPIHandler, port=8000):
     """Run the HTTP server"""
-    server_address = ('', port)
+    server_address = ("", port)
     httpd = server_class(server_address, handler_class)
     print(f'Starting httpd server on port {port}...')
     httpd.serve_forever()
