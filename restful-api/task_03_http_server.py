@@ -40,7 +40,6 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
         else:
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
-            self.send_header('Content-Length', str(len(message)))
             self.end_headers()
 
 # Run the HTTP server
