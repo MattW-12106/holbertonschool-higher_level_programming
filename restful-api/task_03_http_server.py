@@ -25,7 +25,7 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
                 "age": 30,
                 "city": "New York"
             }
-            self.wfile.write(json.dumps(data).encode())
+            self.wfile.write(json.dumps(data).encode("utf-8"))
         
         # If the path is '/status', return a plain text response with "OK"
         elif self.path == "/status":
@@ -39,15 +39,10 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b'Not Found')
+            self.wfile.write(b'404 Not Found')
 
 # Function to run the HTTP server
-def run(server_class=HTTPServer, handler_class=SimpleAPIHandler, port=8000):
-    """Run the HTTP server"""
-    server_address = ("", port)
-    httpd = server_class(server_address, handler_class)
-    print(f'Starting httpd server on port {port}...')
-    httpd.serve_forever()
-
 if __name__ == "__main__":
-    run()
+    server_address = ("", 8000)
+    httpd = HTTPServer(server_address, SimpleAPIHandler)
+    httpd.serve_forever()
