@@ -10,35 +10,44 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
 
         # If the path is '/', return a welcome message
         if self.path == '/':
+            message = b"Hello, this is a simple API!"
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
+            self.send_header('Content-Length', str(len(message)))
             self.end_headers()
-            self.wfile.write(b'Hello, this is a simple API!')
+            self.wfile.write(message)
 
         # If the path is '/data', return a JSON response with some data
         elif self.path == '/data':
+            message = json.dumps(data).encode("utf-8")
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
+            self.send_header('Content-Length', str(len(message)))
             self.end_headers()
             data = {
                 "name": "John",
                 "age": 30,
                 "city": "New York"
             }
-            self.wfile.write(json.dumps(data).encode("utf-8"))
+            self.wfile.write(message)
         
         # If the path is '/status', return a plain text response with "OK"
         elif self.path == "/status":
+            message = b"OK"
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
+            self.send_header('Content-Length', str(len(message)))
             self.end_headers()
-            self.wfile.write(b"OK")
+            self.wfile.write(message)
         
         # If the path is not there, return a 404 Not Found response
         else:
+            message = b"404 Not Found"
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
+            self.send_header('Content-Length', str(len(message)))
             self.end_headers()
+            self.wfile.write(message)
 
 # Run the HTTP server
 if __name__ == "__main__":
