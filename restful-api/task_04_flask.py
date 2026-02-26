@@ -32,7 +32,7 @@ def user_info(username):
         return jsonify({"error": "User not found"}), 404
     
 # defines a route for the /data/<username> endpoint that allows adding new user data via POST request
-@app.route('/data/add_user', methods=['POST'])
+@app.route('/add_user', methods=['POST'])
 def add_user():
     if not request.is_json:
         return jsonify({"error": "Invalid JSON"}), 400
