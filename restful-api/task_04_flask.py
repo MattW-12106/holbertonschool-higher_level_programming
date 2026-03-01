@@ -43,8 +43,11 @@ def add_user():
     if username in users:
         return jsonify({"error": "Username already exists"}), 409
 
-    # Store full user object using username as key
-    users[username] = data
+    # Remove username from stored object
+    user_data = data.copy()
+    user_data.pop("username")
+
+    users[username] = user_data
 
     return jsonify(data), 201
 
