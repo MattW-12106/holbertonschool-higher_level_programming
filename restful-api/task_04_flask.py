@@ -1,60 +1,56 @@
 #!/usr/bin/python3
-"""Develop a Simple API using Python with Flask"""
-
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
-# define a dictionary to store user data
+# In-memory user storage
 users = {}
 
-# defines a route for the home page
-@app.route('/')
+# Root Endpoint
+@app.route("/")
 def home():
     return "Welcome to the Flask API!"
 
-# defines a route for the /data endpoint that returns OK
+# Status Endpoint
 @app.route("/status")
 def status():
     return "OK"
 
-# defines a route for the /data endpoint that returns a JSON response with username data
-@app.route('/data')
-def usernames():
+# Return All Usernames
+@app.route("/data")
+def get_usernames():
     return jsonify(list(users.keys()))
 
-# defines a route for the /data/<username> endpoint that returns user information in JSON
-@app.route('/users/<username>')
-def user_info(username):
-    user = users.get(username)
-    if user:
-        return jsonify(user)
-    else:
+# Get Specific User
+@app.route("/users/<username>")
+def get_user(username):
+    if username not in users:
         return jsonify({"error": "User not found"}), 404
-    
-# defines a route for the /data/<username> endpoint that allows adding new user data via POST request
-@app.route('/add_user', methods=['POST'])
+
+    return jsonify(users[username])
+
+# Add New User (POST)
+@app.route("/add_user", methods=["POST"])
 def add_user():
     if not request.is_json:
         return jsonify({"error": "Invalid JSON"}), 400
-    
+
     data = request.get_json()
 
-    if 'username' not in data:
+    username = data.get("username")
+    if not username:
         return jsonify({"error": "Username is required"}), 400
-    
-    username = data["username"]
 
     if username in users:
         return jsonify({"error": "Username already exists"}), 409
-    
-    users[username] = {
-        "username": username,
-        "name": data.get("name", ""),
-        "age": data.get("age", ""),
-        "city": data.get("city", "")
-    }
 
-    return jsonify({"message": f"User added"}), 201
+    # Store full user object using username as key
+    users[username] = data
 
-if __name__ == '__main__':
+    return jsonify({
+        "message": "User added successfully",
+        "user": data
+    }), 201
+
+# Run Server
+if __name__ == "__main__":
     app.run()
