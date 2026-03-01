@@ -36,18 +36,16 @@ def add_user():
 
     data = request.get_json()
 
-    username = data.get("username")
-    if not username:
+    if "username" not in data:
         return jsonify({"error": "Username is required"}), 400
+
+    username = data["username"]
 
     if username in users:
         return jsonify({"error": "Username already exists"}), 409
 
-    # Remove username from stored object
-    user_data = data.copy()
-    user_data.pop("username")
-
-    users[username] = user_data
+    # Store the FULL object including username
+    users[username] = data
 
     return jsonify(data), 201
 
