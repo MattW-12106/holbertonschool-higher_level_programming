@@ -46,10 +46,7 @@ def add_user():
     # Store full user object using username as key
     users[username] = data
 
-    return jsonify({
-        "message": "User added successfully",
-        "user": data
-    }), 201
+    return jsonify(data), 201
 
 # Run Server
 if __name__ == "__main__":
