@@ -1,11 +1,10 @@
 -- creates the database hbtn_0d_2 and the user user_0d_2
-IF NOT EXISTS CREATE DATABASE hbtn_0d_2;
+CREATE DATABASE IF NOT EXISTS hbtn_0d_2;
 
-IF NOT EXISTS CREATE USER 'user_0d_2'@'localhost'
-IDENTIFIED BY 'hbtn_0d_2_pwd';
+-- Create the user user_0d_2 with the password user_0d_2_pwd and grant them SELECT privileges
+CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost'
+IDENTIFIED BY 'user_0d_2_pwd';
 
--- user only has SELECT privilege on the database hbtn_0d_2
-GRANT SELECT ON hbtn_0d_2 TO 'user_0d_2'@'localhost';
+GRANT SELECT ON hbtn_0d_2.* TO 'user_0d_2'@'localhost';
 
--- flush privileges to apply changes
 FLUSH PRIVILEGES;
